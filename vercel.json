@@ -1,7 +1,6 @@
 {
+  "framework": null,
   "buildCommand": "cd fuel-frontend && npm install && npm run build",
   "outputDirectory": "fuel-frontend/dist",
-  "installCommand": "cd fuel-frontend && npm install",
-  "framework": "vite",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
