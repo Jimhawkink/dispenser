@@ -23,12 +23,12 @@ function StockBar({ name, current, max, colour }: { name: string; current: numbe
   return (
     <div className="mb-3 last:mb-0">
       <div className="flex justify-between items-center mb-1.5">
-        <span className="text-sm text-gray-300 font-medium">{name}</span>
+        <span className="text-sm text-slate-600 font-medium">{name}</span>
         <span className={`text-xs font-bold num ${status === 'critical' ? 'text-red-400' : status === 'low' ? 'text-amber-400' : 'text-emerald-400'}`}>
           {formatLitres(current)}
         </span>
       </div>
-      <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+      <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${pct}%` }}
@@ -115,7 +115,7 @@ export default function Dashboard() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="page-title">Dashboard</h1>
-          <p className="text-gray-500 text-sm mt-0.5">
+          <p className="text-slate-400 text-sm mt-0.5">
             {new Date().toLocaleDateString('en-KE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
           </p>
         </div>
@@ -142,7 +142,7 @@ export default function Dashboard() {
         <div className="glass-card p-5">
           <h3 className="section-title mb-4">Payment Channels</h3>
           {(data?.payment_channels || []).length === 0 ? (
-            <div className="flex items-center justify-center h-48 text-gray-500 text-sm">No payments this week</div>
+            <div className="flex items-center justify-center h-48 text-slate-400 text-sm">No payments this week</div>
           ) : (
             <>
               <div className="chart-container h-48 mb-4">
@@ -153,9 +153,9 @@ export default function Dashboard() {
                   <div key={c.channel} className="flex items-center justify-between text-xs">
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full" style={{ background: CHANNEL_COLORS[c.channel as PaymentChannel] || '#6b7280' }} />
-                      <span className="text-gray-400">{CHANNEL_DISPLAY[c.channel] || c.channel}</span>
+                      <span className="text-slate-500">{CHANNEL_DISPLAY[c.channel] || c.channel}</span>
                     </div>
-                    <span className="text-gray-300 font-medium num">{formatKES(c.amount)}</span>
+                    <span className="text-slate-600 font-medium num">{formatKES(c.amount)}</span>
                   </div>
                 ))}
               </div>
@@ -205,7 +205,7 @@ export default function Dashboard() {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-gray-800/50">
+                <tr className="border-b border-slate-100">
                   <th className="table-header text-left">Customer</th>
                   <th className="table-header text-left hidden sm:table-cell">Code</th>
                   <th className="table-header text-right">Balance Due</th>
@@ -216,10 +216,10 @@ export default function Dashboard() {
                   <motion.tr key={c.id} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }} className="table-row">
                     <td className="table-cell">
                       <div className="flex items-center gap-2">
-                        <div className="w-7 h-7 rounded-lg bg-gray-700 flex items-center justify-center text-xs font-bold text-gray-300">
+                        <div className="w-7 h-7 rounded-lg bg-slate-200 flex items-center justify-center text-xs font-bold text-slate-600">
                           {c.name[0].toUpperCase()}
                         </div>
-                        <span className="text-gray-200 text-sm">{c.name}</span>
+                        <span className="text-slate-700 text-sm">{c.name}</span>
                       </div>
                     </td>
                     <td className="table-cell hidden sm:table-cell">
@@ -238,3 +238,4 @@ export default function Dashboard() {
     </div>
   );
 }
+

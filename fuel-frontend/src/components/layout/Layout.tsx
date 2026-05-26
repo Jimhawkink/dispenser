@@ -49,7 +49,7 @@ export default function Layout() {
       <div className={`flex items-center gap-3 px-4 py-5 border-b border-slate-100 ${collapsed ? 'justify-center' : ''}`}>
         <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
           style={{ background: 'linear-gradient(135deg, #10b981, #059669)', boxShadow: '0 4px 14px rgba(16,185,129,0.3)' }}>
-          <Fuel size={18} className="text-white" />
+          <Fuel size={18} className="text-slate-800" />
         </div>
         <AnimatePresence>
           {!collapsed && (
@@ -189,3 +189,5 @@ export default function Layout() {
     </div>
   );
 }
+
+

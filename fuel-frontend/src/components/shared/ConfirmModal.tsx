@@ -24,10 +24,10 @@ export default function ConfirmModal({ open, title, message, confirmLabel = 'Con
                 <AlertTriangle size={20} className={danger ? 'text-red-400' : 'text-amber-400'} />
               </div>
               <div className="flex-1">
-                <h3 className="font-heading font-semibold text-white mb-1">{title}</h3>
-                <p className="text-gray-400 text-sm">{message}</p>
+                <h3 className="font-heading font-semibold text-slate-800 mb-1">{title}</h3>
+                <p className="text-slate-500 text-sm">{message}</p>
               </div>
-              <button onClick={onCancel} className="text-gray-500 hover:text-gray-300"><X size={18} /></button>
+              <button onClick={onCancel} className="text-slate-400 hover:text-slate-600"><X size={18} /></button>
             </div>
             <div className="flex gap-3 mt-6 justify-end">
               <button onClick={onCancel} className="btn-secondary text-sm py-2">Cancel</button>
@@ -42,3 +42,5 @@ export default function ConfirmModal({ open, title, message, confirmLabel = 'Con
     </AnimatePresence>
   );
 }
+
+

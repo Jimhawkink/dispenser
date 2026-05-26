@@ -58,7 +58,7 @@ export default function LivePaymentFeed() {
               <span className="live-dot" /> Live
             </span>
           ) : (
-            <span className="flex items-center gap-1.5 text-xs text-gray-500">
+            <span className="flex items-center gap-1.5 text-xs text-slate-400">
               <WifiOff size={10} /> Polling
             </span>
           )}
@@ -68,7 +68,7 @@ export default function LivePaymentFeed() {
       <div ref={listRef} className="flex-1 overflow-y-auto space-y-2 pr-1">
         <AnimatePresence initial={false}>
           {payments.length === 0 && (
-            <div className="text-center py-10 text-gray-500 text-sm">No payments yet today</div>
+            <div className="text-center py-10 text-slate-400 text-sm">No payments yet today</div>
           )}
           {payments.map((p) => (
             <motion.div
@@ -78,23 +78,23 @@ export default function LivePaymentFeed() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.3 }}
-              className={`flex items-center gap-3 p-3 rounded-xl border transition-all duration-300 ${newIds.has(p.id) ? 'border-emerald-500/40 bg-emerald-500/10 payment-new' : 'border-gray-800/40 bg-gray-800/20 hover:bg-gray-800/40'}`}
+              className={`flex items-center gap-3 p-3 rounded-xl border transition-all duration-300 ${newIds.has(p.id) ? 'border-emerald-500/40 bg-emerald-500/10 payment-new' : 'border-slate-200/40 bg-slate-100/20 hover:bg-slate-50'}`}
             >
               <ChannelIcon channel={p.payment_channel} />
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2">
-                  <p className="text-sm font-medium text-white truncate">
+                  <p className="text-sm font-medium text-slate-800 truncate">
                     {p.customer?.name || p.payer_name || 'Unknown'}
                   </p>
                   <p className="text-sm font-bold text-emerald-400 num flex-shrink-0">{formatKES(p.amount)}</p>
                 </div>
                 <div className="flex items-center justify-between mt-0.5">
-                  <span className="text-xs text-gray-500 truncate">
+                  <span className="text-xs text-slate-400 truncate">
                     {CHANNEL_LABELS[p.payment_channel]} · {p.transaction_reference || '—'}
                   </span>
                   <StatusBadge status={p.status} size="xs" />
                 </div>
-                <p className="text-[10px] text-gray-600 mt-0.5">
+                <p className="text-[10px] text-slate-500 mt-0.5">
                   {formatDistanceToNow(new Date(p.payment_date), { addSuffix: true })}
                 </p>
               </div>
@@ -105,3 +105,5 @@ export default function LivePaymentFeed() {
     </div>
   );
 }
+
+

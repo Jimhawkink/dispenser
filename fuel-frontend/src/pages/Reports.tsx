@@ -72,9 +72,9 @@ export default function Reports() {
       />
 
       {/* Tab navigation */}
-      <div className="flex gap-1 p-1 bg-gray-900/60 rounded-xl w-fit">
+      <div className="flex gap-1 p-1 bg-white/80 rounded-xl w-fit">
         {([['daily','Daily Report'],['summary','Period Summary'],['aging','Aging Report']] as const).map(([v, l]) => (
-          <button key={v} onClick={() => setTab(v)} className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${tab === v ? 'bg-emerald-500 text-white shadow-brand' : 'text-gray-400 hover:text-white'}`}>{l}</button>
+          <button key={v} onClick={() => setTab(v)} className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${tab === v ? 'bg-emerald-500 text-white shadow-brand' : 'text-slate-500 hover:text-slate-900'}`}>{l}</button>
         ))}
       </div>
 
@@ -82,9 +82,9 @@ export default function Reports() {
       {tab === 'daily' && (
         <div className="space-y-5">
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 bg-gray-800/60 border border-gray-700/50 rounded-xl px-3 py-2">
-              <Calendar size={14} className="text-gray-400" />
-              <input type="date" value={dailyDate} onChange={e => setDailyDate(e.target.value)} className="bg-transparent text-white text-sm outline-none" />
+            <div className="flex items-center gap-2 bg-slate-100 border border-slate-200 rounded-xl px-3 py-2">
+              <Calendar size={14} className="text-slate-500" />
+              <input type="date" value={dailyDate} onChange={e => setDailyDate(e.target.value)} className="bg-transparent text-slate-800 text-sm outline-none" />
             </div>
             <div className="flex gap-2">
               <button onClick={() => setDailyDate(format(subDays(new Date(dailyDate), 1), 'yyyy-MM-dd'))} className="btn-secondary py-2 px-3 text-xs">← Prev</button>
@@ -104,9 +104,9 @@ export default function Reports() {
                   { label: 'Collection Rate', value: `${daily.total_sales > 0 ? ((daily.total_collected / daily.total_sales) * 100).toFixed(0) : 0}%`, sub: 'of daily sales' },
                 ].map(k => (
                   <div key={k.label} className="glass-card p-4">
-                    <p className="text-xs text-gray-500 uppercase tracking-wider">{k.label}</p>
-                    <p className={`font-heading font-bold text-2xl mt-1 num ${k.red ? 'text-amber-400' : 'text-white'}`}>{k.value}</p>
-                    <p className="text-xs text-gray-600 mt-0.5">{k.sub}</p>
+                    <p className="text-xs text-slate-400 uppercase tracking-wider">{k.label}</p>
+                    <p className={`font-heading font-bold text-2xl mt-1 num ${k.red ? 'text-amber-400' : 'text-slate-800'}`}>{k.value}</p>
+                    <p className="text-xs text-slate-500 mt-0.5">{k.sub}</p>
                   </div>
                 ))}
               </div>
@@ -120,8 +120,8 @@ export default function Reports() {
                     <div className="mt-3 space-y-2">
                       {daily.volume_by_product.map((p: { name: string; litres: number; revenue: number }) => (
                         <div key={p.name} className="flex justify-between text-xs">
-                          <span className="text-gray-400">{p.name}</span>
-                          <span className="text-gray-300 num">{p.litres.toFixed(0)}L · {formatKES(p.revenue)}</span>
+                          <span className="text-slate-500">{p.name}</span>
+                          <span className="text-slate-600 num">{p.litres.toFixed(0)}L · {formatKES(p.revenue)}</span>
                         </div>
                       ))}
                     </div>
@@ -138,9 +138,9 @@ export default function Reports() {
                         <div key={c.channel} className="flex justify-between text-xs">
                           <div className="flex items-center gap-2">
                             <div className="w-2 h-2 rounded-full" style={{ background: CHANNEL_COLORS[c.channel as PaymentChannel] || '#6b7280' }} />
-                            <span className="text-gray-400">{CHANNEL_LABELS[c.channel] || c.channel}</span>
+                            <span className="text-slate-500">{CHANNEL_LABELS[c.channel] || c.channel}</span>
                           </div>
-                          <span className="text-gray-300 num">{c.count}x · {formatKES(c.amount)}</span>
+                          <span className="text-slate-600 num">{c.count}x · {formatKES(c.amount)}</span>
                         </div>
                       ))}
                     </div>
@@ -156,11 +156,11 @@ export default function Reports() {
       {tab === 'summary' && (
         <div className="space-y-5">
           <div className="flex items-center gap-3 flex-wrap">
-            <div className="flex items-center gap-2 bg-gray-800/60 border border-gray-700/50 rounded-xl px-3 py-2">
-              <Calendar size={14} className="text-gray-400" />
-              <input type="date" value={from} onChange={e => setFrom(e.target.value)} className="bg-transparent text-white text-sm outline-none" />
-              <span className="text-gray-500 text-sm">to</span>
-              <input type="date" value={to} onChange={e => setTo(e.target.value)} className="bg-transparent text-white text-sm outline-none" />
+            <div className="flex items-center gap-2 bg-slate-100 border border-slate-200 rounded-xl px-3 py-2">
+              <Calendar size={14} className="text-slate-500" />
+              <input type="date" value={from} onChange={e => setFrom(e.target.value)} className="bg-transparent text-slate-800 text-sm outline-none" />
+              <span className="text-slate-400 text-sm">to</span>
+              <input type="date" value={to} onChange={e => setTo(e.target.value)} className="bg-transparent text-slate-800 text-sm outline-none" />
             </div>
           </div>
 
@@ -174,8 +174,8 @@ export default function Reports() {
                   { label: 'Transactions', value: summary.total_sales },
                 ].map(k => (
                   <div key={k.label} className="glass-card p-4">
-                    <p className="text-xs text-gray-500 uppercase tracking-wider">{k.label}</p>
-                    <p className={`font-heading font-bold text-2xl mt-1 num ${k.red ? 'text-amber-400' : 'text-white'}`}>{k.value}</p>
+                    <p className="text-xs text-slate-400 uppercase tracking-wider">{k.label}</p>
+                    <p className={`font-heading font-bold text-2xl mt-1 num ${k.red ? 'text-amber-400' : 'text-slate-800'}`}>{k.value}</p>
                   </div>
                 ))}
               </div>
@@ -184,14 +184,14 @@ export default function Reports() {
                   <h3 className="section-title mb-4">Channel Breakdown</h3>
                   <div className="overflow-x-auto">
                     <table className="w-full">
-                      <thead><tr className="border-b border-gray-800/50">
+                      <thead><tr className="border-b border-slate-100">
                         <th className="table-header text-left">Channel</th><th className="table-header text-right">Transactions</th><th className="table-header text-right">Amount</th>
                       </tr></thead>
                       <tbody>
                         {summary.by_channel.map((c: { channel: string; count: number; amount: number }) => (
                           <tr key={c.channel} className="table-row">
-                            <td className="table-cell"><div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full" style={{ background: CHANNEL_COLORS[c.channel as PaymentChannel] || '#6b7280' }} /><span className="text-sm text-white">{CHANNEL_LABELS[c.channel] || c.channel}</span></div></td>
-                            <td className="table-cell text-right text-sm text-gray-400 num">{c.count}</td>
+                            <td className="table-cell"><div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full" style={{ background: CHANNEL_COLORS[c.channel as PaymentChannel] || '#6b7280' }} /><span className="text-sm text-slate-800">{CHANNEL_LABELS[c.channel] || c.channel}</span></div></td>
+                            <td className="table-cell text-right text-sm text-slate-500 num">{c.count}</td>
                             <td className="table-cell text-right font-bold text-emerald-400 num">{formatKES(c.amount)}</td>
                           </tr>
                         ))}
@@ -216,7 +216,7 @@ export default function Reports() {
             <div className="glass-card overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full">
-                  <thead><tr className="border-b border-gray-800/50">
+                  <thead><tr className="border-b border-slate-100">
                     <th className="table-header text-left">Customer</th>
                     <th className="table-header text-right">Outstanding</th>
                     <th className="table-header text-right hidden md:table-cell">Credit Limit</th>
@@ -228,20 +228,20 @@ export default function Reports() {
                     {(aging as { id: string; name: string; customer_code: string; phone: string; current_balance: number; credit_limit: number; utilization_pct: number; days_outstanding: number; bucket: string; is_overdue: boolean }[]).map((c, i) => (
                       <motion.tr key={c.id} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.03 }} className="table-row">
                         <td className="table-cell">
-                          <p className="text-sm font-medium text-white">{c.name}</p>
-                          <p className="text-xs text-gray-500">{c.customer_code} · {c.phone}</p>
+                          <p className="text-sm font-medium text-slate-800">{c.name}</p>
+                          <p className="text-xs text-slate-400">{c.customer_code} · {c.phone}</p>
                         </td>
                         <td className="table-cell text-right"><span className="text-red-400 font-bold text-sm num">{formatKES(c.current_balance)}</span></td>
-                        <td className="table-cell text-right hidden md:table-cell text-sm num text-gray-400">{formatKES(c.credit_limit)}</td>
+                        <td className="table-cell text-right hidden md:table-cell text-sm num text-slate-500">{formatKES(c.credit_limit)}</td>
                         <td className="table-cell hidden sm:table-cell">
                           <div className="flex items-center gap-2">
-                            <div className="flex-1 h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                            <div className="flex-1 h-1.5 bg-slate-100 rounded-full overflow-hidden">
                               <div className="h-full rounded-full" style={{ width: `${c.utilization_pct}%`, background: c.utilization_pct > 80 ? '#ef4444' : c.utilization_pct > 50 ? '#f59e0b' : '#10b981' }} />
                             </div>
-                            <span className="text-xs text-gray-400 w-10 text-right num">{c.utilization_pct}%</span>
+                            <span className="text-xs text-slate-500 w-10 text-right num">{c.utilization_pct}%</span>
                           </div>
                         </td>
-                        <td className="table-cell hidden lg:table-cell text-sm text-gray-400 num">{c.days_outstanding}d</td>
+                        <td className="table-cell hidden lg:table-cell text-sm text-slate-500 num">{c.days_outstanding}d</td>
                         <td className="table-cell text-center">
                           <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${c.bucket === 'Over 90 days' ? 'bg-red-500/15 text-red-400' : c.bucket === '61-90 days' ? 'bg-orange-500/15 text-orange-400' : c.bucket === '31-60 days' ? 'bg-amber-500/15 text-amber-400' : 'bg-blue-500/15 text-blue-400'}`}>
                             {c.bucket}
@@ -251,7 +251,7 @@ export default function Reports() {
                     ))}
                   </tbody>
                 </table>
-                {(aging || []).length === 0 && <div className="text-center py-12 text-gray-500 text-sm">No outstanding balances. Excellent! 🎉</div>}
+                {(aging || []).length === 0 && <div className="text-center py-12 text-slate-400 text-sm">No outstanding balances. Excellent! 🎉</div>}
               </div>
             </div>
           )}
@@ -260,3 +260,6 @@ export default function Reports() {
     </div>
   );
 }
+
+
+

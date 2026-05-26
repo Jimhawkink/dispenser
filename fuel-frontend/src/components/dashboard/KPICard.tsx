@@ -34,15 +34,17 @@ export default function KPICard({ title, value, format = 'currency', trend, icon
           </div>
         )}
       </div>
-      <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">{title}</p>
+      <p className="text-slate-500 text-xs uppercase tracking-wider mb-1">{title}</p>
       <motion.p
         key={value}
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        className={`font-heading font-bold text-2xl num ${alert && value > 0 ? 'text-red-400' : 'text-white'}`}
+        className={`font-heading font-bold text-2xl num ${alert && value > 0 ? 'text-red-400' : 'text-slate-800'}`}
       >
         {displayValue}
       </motion.p>
     </motion.div>
   );
 }
+
+

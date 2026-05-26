@@ -196,7 +196,7 @@ export const STATUS_COLORS: Record<SaleStatus | PaymentStatus, { bg: string; tex
   pending:    { bg: 'bg-amber-500/15',   text: 'text-amber-400',   dot: 'bg-amber-400' },
   unmatched:  { bg: 'bg-red-500/15',     text: 'text-red-400',     dot: 'bg-red-400' },
   failed:     { bg: 'bg-red-500/15',     text: 'text-red-400',     dot: 'bg-red-400' },
-  void:       { bg: 'bg-gray-500/15',    text: 'text-gray-400',    dot: 'bg-gray-400' },
+  void:       { bg: 'bg-gray-500/15',    text: 'text-slate-500',    dot: 'bg-gray-400' },
 };
 
 // KES currency formatter
@@ -205,3 +205,4 @@ export const formatKES = (amount: number): string =>
 
 export const formatLitres = (l: number): string =>
   `${Number(l || 0).toLocaleString('en-KE', { minimumFractionDigits: 0, maximumFractionDigits: 2 })}L`;
+

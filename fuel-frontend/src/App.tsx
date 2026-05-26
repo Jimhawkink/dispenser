@@ -15,10 +15,10 @@ import NotFound from './pages/NotFound';
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, isLoading } = useAuth();
   if (isLoading) return (
-    <div className="min-h-screen bg-gray-950 flex items-center justify-center">
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center">
       <div className="flex flex-col items-center gap-4">
         <div className="w-12 h-12 rounded-full border-2 border-emerald-500 border-t-transparent animate-spin" />
-        <p className="text-gray-400 text-sm">Loading FuelFlow Pro...</p>
+        <p className="text-slate-500 text-sm">Loading FuelFlow Pro...</p>
       </div>
     </div>
   );
@@ -47,3 +47,4 @@ export default function App() {
     </BrowserRouter>
   );
 }
+
