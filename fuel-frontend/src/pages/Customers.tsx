@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Users, Plus, Search, Phone, Building2, CreditCard,
   ChevronRight, CheckCircle2, Smartphone, Landmark, Banknote, Wallet
@@ -17,10 +17,9 @@ import ConfirmModal from '../components/shared/ConfirmModal';
 const PAYMENT_METHODS = [
   {
     id: 'mpesa',
-    label: 'M-Pesa',
+    label: 'M-Pesa (STK / Paybill)',
     icon: Smartphone,
-    color: 'emerald',
-    desc: 'Payments via M-Pesa Paybill or STK Push. Auto-matched by phone number.',
+    desc: 'STK Push or Paybill payments. Auto-matched by phone number or customer code.',
     autoSync: true,
     bgClass: 'bg-emerald-50 border-emerald-200',
     activeClass: 'ring-2 ring-emerald-500 bg-emerald-50 border-emerald-400',
@@ -30,7 +29,6 @@ const PAYMENT_METHODS = [
     id: 'pesalink',
     label: 'PesaLink / IntaSend',
     icon: CreditCard,
-    color: 'blue',
     desc: 'Inter-bank transfers via PesaLink. Auto-matched by account reference.',
     autoSync: true,
     bgClass: 'bg-blue-50 border-blue-200',
@@ -39,21 +37,29 @@ const PAYMENT_METHODS = [
   },
   {
     id: 'bank_transfer',
-    label: 'Bank Transfer / Equity',
+    label: 'Bank Transfer / Equity Jenga',
     icon: Landmark,
-    color: 'indigo',
-    desc: 'Direct bank transfers & Equity Jenga. Matched by account reference or PesaLink.',
+    desc: 'Direct bank transfers & Equity Jenga IPN. Matched by account reference.',
     autoSync: true,
     bgClass: 'bg-indigo-50 border-indigo-200',
     activeClass: 'ring-2 ring-indigo-500 bg-indigo-50 border-indigo-400',
     iconClass: 'text-indigo-600 bg-indigo-100',
   },
   {
-    id: 'cash',
-    label: 'Cash',
+    id: 'bank_deposit',
+    label: 'Cash Deposit to Bank / Agent',
     icon: Banknote,
-    color: 'amber',
-    desc: 'Cash payments. Manually entered by cashier. Instant reconciliation.',
+    desc: 'Customer deposits cash at bank branch or M-Pesa agent. Cashier confirms on receipt of bank slip.',
+    autoSync: false,
+    bgClass: 'bg-orange-50 border-orange-200',
+    activeClass: 'ring-2 ring-orange-500 bg-orange-50 border-orange-400',
+    iconClass: 'text-orange-600 bg-orange-100',
+  },
+  {
+    id: 'cash',
+    label: 'Cash (On-Site)',
+    icon: Wallet,
+    desc: 'Physical cash paid at station. Cashier enters manually. Instant reconciliation.',
     autoSync: false,
     bgClass: 'bg-amber-50 border-amber-200',
     activeClass: 'ring-2 ring-amber-500 bg-amber-50 border-amber-400',
