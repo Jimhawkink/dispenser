@@ -1,6 +1,6 @@
 {
   "framework": null,
-  "buildCommand": "cd fuel-frontend && npm install && npm run build",
+  "buildCommand": "cd fuel-frontend && npm install --include=dev && npm run build",
   "outputDirectory": "fuel-frontend/dist",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
